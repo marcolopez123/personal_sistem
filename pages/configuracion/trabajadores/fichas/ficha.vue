@@ -5,62 +5,91 @@
       <div slot="body">
         <div class="row justify-content-end">
           <div class="col-12 col-sm-7">
-            <div class="row">
+            <div class="row py-2 px-3s">
               <div class="col-12">
                 <div class="card bg-gradient-dark">
                   <div class="card-header bg-transparent py-1 px-3">
                     <div class="row">
-                      <div class="z-index-1 position-relative">
-                        <h6 class="text-white">Trabajador</h6>
-
-                      </div>
-                      <div class="card-body pt-0 p-1">
-                        <template v-for="m in trabajadores">
-                          <div class="col-12 py-2">
-                            <div slot="body" class="row">
-                              <div class="form-group col-md-3">
-                                <div class="form-group">
-                                  <img :src="m.image.url" alt="image" class=""
-                                    style="width: 150px; height: 150px; border-radius: 75px; border-color: white;" />
-                                </div>
-                              </div>
-                              <div class="form-group col-md-9" style="color: white; ">
-                                <spam>Nombre: {{ m.nombre }}</spam>
-                                <br>
-                                <spam>Rut: {{ formatRUT(m.rut) }}</spam>
-                                <br>
-                                <spam>Pais: {{ m.pais.nombre }}</spam>
-                                <br>
-                                <spam>Ciudad: {{ m.ciudad.nombre }}</spam>
-                                <br>
-                                <spam>Direccion: {{ m.direccion }}</spam>
-                                <br>
-                                <spam>T Personal: {{ m.t_personal }}</spam>
-                                <br>
-                                <spam>T Emergencia: {{ m.t_emergencia }}</spam>
-                                <br>
-                                <spam>Email: {{ m.e_personal }}</spam>
-                              </div>
-                            </div>
+                      <div class="col-10">
+                        <div class="card-body pt-0 p-1">
+                          <div class="z-index-1 position-relative">
+                            <h6 class="text-white">Ficha Colaborador</h6>
                           </div>
-                        </template>
-                        <span class="text-xs">{{ trabajadores.nombre }}</span>
-                        <hr class="horizontal dark my-2" />
-                        <hr class="horizontal dark my-2" />
-                        <h5 class="mb-0 text-sm">{{ trabajadores.region }}</h5>
-                      </div>
-
-                      <div class="col-lg-4 col-md-4 col-12 my-auto ms-auto">
-                        <div class="input-group input-group-lg">
-
-
                         </div>
                       </div>
-
+                      <div class="col-2">
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-sm-12 p-2 m-0">
+                <div class="card bg-gradient-dark p-4 m-0" style="min-height: 25vh;max-height: 25vh;overflow-y:">
+                  <div class="card-header bg-transparent p-0 m-0">
+                    <div class="card-body pt-0 p-0 m-0">
+                      <template v-for="m in trabajadores">
+                        <div class="col-12 p-0 m-0">
+                          <div class="form-group col-12 d-flex justify-content-center p-0 m-0">
+                            <div class="form-group p-0 m-0">
+                              <img :src="m.image.url" alt="image" class=""
+                                style="width: 150px; height: 150px; border-radius: 75px; border-color: white;" />
+                            </div>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9 col-sm-12 py-2">
+                <div class="card cardPersonalizado"
+                  style="min-height: 25vh;max-height: 25vh;overflow-y: scroll;overflow-x: hidden;">
+                  <div class="card-body pt-1 p-0">
+                    <template v-for="m in trabajadores">
+                      <div class="col-12 py-2">
+                        <div slot="body" class="row p-2">
+                          <div class="col-md-6 col-sm-12" style="color: black;">
+                            <div class="form-group d-flex align-items-center">
+                              <label for="" class="labelPersonalizado mr-2">Nombre</label>
+                              <span class="mr-2 spamPersonalizado">{{ m.nombre }} {{ m.a_paterno }} {{ m.a_materno
+                                }}</span>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                              <label for="" class="labelPersonalizado mr-2">Rut</label>
+                              <span class="mr-2 spamPersonalizado">{{ formatRUT(m.rut) }}</span>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                              <label for="" class="labelPersonalizado mr-2">Direccion</label>
+                              <span class="mr-2 spamPersonalizado">{{ m.direccion }}</span>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                              <label for="" class="labelPersonalizado mr-2">Ciudad</label>
+                              <span class="mr-2 spamPersonalizado">{{ m.ciudad.nombre }}</span>
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-sm-12" style="color: black;">
+                            <div class="form-group d-flex align-items-center">
+                              <label for="" class="labelPersonalizado mr-2">Telefono</label>
+                              <span class="mr-2 spamPersonalizado">{{ m.t_personal }}</span>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                              <label for="" class="labelPersonalizado mr-2">T Emerg</label>
+                              <span class="mr-2 spamPersonalizado">{{ m.t_emergencia }}</span>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                              <label for="" class="labelPersonalizado mr-2">Email</label>
+                              <span class="mr-2 spamPersonalizado">{{ m.e_personal }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+             
             </div>
           </div>
           <div class="col-sm-5">
@@ -869,5 +898,39 @@ export default {
   visibility: visible;
   display: block;
   opacity: 1 !important;
+}
+</style>
+<style>
+.cardPersonalizado {
+  box-shadow: 0 6px 12px rgba(36, 37, 39, .14), 0 16px 24px rgba(36, 37, 39, .08);
+}
+</style>
+<style>
+.spamPersonalizado {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #344767;
+}
+
+.labelPersonalizado {
+  font-size: 1rem;
+  margin-bottom: 0rem;
+  width: 5.5rem;
+}
+
+.labelPersonalizado2 {
+  font-size: 1rem;
+  margin-bottom: 0rem;
+  width: 8rem;
+}
+
+.nav-link {
+  color: white;
+  --bs-nav-link-hover-color: white;
+
+}
+
+.zf {
+  font-size: 1rem;
 }
 </style>

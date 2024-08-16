@@ -385,9 +385,7 @@
                       <div class="form-group has-success">
                         <label for="">Año</label>
                         <select name="" id="" class="form-control bg-transparent border-0 text-dark" v-model="ano_id">
-                          <option value="all" class="text-dark">
-                            Seleccion Año
-                          </option>
+                          <option value="" disabled selected>Seleccione año</option>
                           <option class="text-dark" v-for="m in anos1" :value="m.id">{{ m.nro }}</option>
                         </select>
                       </div>
@@ -396,9 +394,7 @@
                       <div class="form-group has-success">
                         <label for="">Mes</label>
                         <select name="" id="" class="form-control bg-transparent border-0 text-dark" v-model="mese_id">
-                          <option value="all" class="text-dark">
-                            Seleccion Mes
-                          </option>
+                          <option value="" disabled selected>Seleccione mes</option>
                           <option class="text-dark" v-for="m in meses1" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -435,9 +431,7 @@
                         <label for="">Tipo Archivo</label>
                         <select name="" id="" class="form-control bg-transparent border-0 text-dark"
                           v-model="tipo_archivo_id">
-                          <option value="all" class="text-dark">
-                            Tipo Archivo
-                          </option>
+                          <option value="" disabled selected>Seleccione tipo de archivo</option>
                           <option class="text-dark" v-for="m in tipo_archivos" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -525,6 +519,7 @@ export default {
       load: false,
       buscar: "",
       buscar1: "",
+      area_id:2,
       buscar2: "",
       boton1: "1",
       list: [],
@@ -722,7 +717,7 @@ export default {
       let self = this
       try {
         const operacion = {
-          trabajador_id: this.cleanRUT(this.sl.sl_id),
+          trabajador_id: this.sl.sl_id,
           ano_id: this.ano_id,
           mese_id: this.mese_id,
         }
@@ -799,7 +794,8 @@ export default {
       let self = this
       try {
         const operacion = {
-          trabajador_id: this.cleanRUT(this.sl.sl_id),
+          trabajador_id: this.sl.sl_id,
+          area_id: this.area_id,
           tipo_archivo_id: this.tipo_archivo_id,
           comentario: this.comentario,
         }

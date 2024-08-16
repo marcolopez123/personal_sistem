@@ -23,13 +23,10 @@ export default {
       { rel: 'stylesheet', href: '/assets/css/tabla.css' },
       { rel: 'stylesheet', href: '/assets/css/propios.css' },
      
-     
-      
-      
     ],
 
     script:[
-      { src: "https://kit.fontawesome.com/5030de370b.js" },
+      { src: "https://kit.fontawesome.com/96f9d238f7.js" },
       { src: "https://use.fontawesome.com/releases/v5.0.8/js/brands.js" },
       { src: "/assets/js/core/popper.min.js" },
       { src: "/assets/js/core/bootstrap.min.js" },

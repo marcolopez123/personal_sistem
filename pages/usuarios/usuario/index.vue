@@ -92,7 +92,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div slot="body" class="row">
+                <div slot="body" class="modal-body row">
                 <div class="form-group col-md-6">
                   <label for="">Primer Nombre</label>
                   <input type="text" name="" v-model="nombre" class="form-control" id="" />
@@ -110,7 +110,7 @@
                   <input type="text" name="" v-model="a_materno" class="form-control" id="" />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="">Telefono</label>
+                  <label for="">Nombre de Usuario</label>
                   <input type="text" name="" v-model="username" class="form-control" id="" />
                 </div>
                 <div class="form-group col-md-6">
@@ -120,6 +120,7 @@
                 <div class="form-group col-6">
                         <label for="">Rol</label>
                         <select name="" id="" class="form-control" v-model="rol_id">
+                          <option value="" disabled selected>Seleccione rol</option>
                           <option v-for="m in roles" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -127,12 +128,14 @@
                         <label for="">Empresa</label>
                         <select name="" id="" class="form-control" v-model="empresa_id"
                           @change="sucursal(empresa_id), empresaid(empresa_id)">
+                          <option value="" disabled selected>Seleccione empresa</option>
                           <option v-for="m in empresas" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
                       <div class="form-group col-6">
                         <label for="">Sucursal</label>
                         <select name="" id="" class="form-control" v-model="sucursal_id" @change="sucursalid(sucursal_id)">
+                          <option value="" disabled selected>Seleccione sucursal</option>
                           <option v-for="m in sucursals" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -163,7 +166,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div slot="body" class="row">
+                <div slot="body" class="modal-body row">
                 <div class="form-group col-md-6">
                   <label for="">Primer Nombre</label>
                   <input type="text" name="" v-model="nombre" class="form-control" id="" />
@@ -181,7 +184,7 @@
                   <input type="text" name="" v-model="a_materno" class="form-control" id="" />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="">Telefono</label>
+                  <label for="">Nombre de Usuario</label>
                   <input type="text" name="" v-model="username" class="form-control" id="" />
                 </div>
                 <div class="form-group col-md-6">
@@ -205,6 +208,13 @@
                         <label for="">Sucursal</label>
                         <select name="" id="" class="form-control" v-model="sucursal_id" @change="sucursalid(sucursal_id)">
                           <option v-for="m in sucursals" :value="m.id">{{ m.nombre }}</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="">Colaborador</label>
+                        <select name="" id="" class="form-control" v-model="trabajador_id">
+                          <option value="" disabled selected>Seleccione colaborador</option>
+                          <option v-for="m in colaboradores" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
                       <div class="form-group">
@@ -246,6 +256,8 @@ export default {
       empresas: [],
       sucursals: [],
       bodegas: [],
+      colaboradores: [],
+      trabajador_id:'',
       roles: [],
       nombre: '',
       s_nombre: '',
@@ -444,6 +456,7 @@ export default {
                     'empresa_id':this.empresa_id,
                     'n_empresa':this.n_empresa,
                     'sucursal_id':this.sucursal_id,
+                    'trabajador_id':this.trabajador_id,
                     'n_sucursal':this.n_sucursal,
                     'nombre': this.nombre,
                     's_nombre': this.s_nombre,
@@ -507,6 +520,7 @@ export default {
       this.id = m.id
       this.empresa_id = m.empresa_id
       this.sucursal_id = m.sucursal_id
+      this.trabajador_id = m.trabajador_id
       this.nombre = m.nombre
       this.s_nombre = m.s_nombre,
       this.a_paterno = m.a_paterno
@@ -521,6 +535,7 @@ export default {
       this.empresa_id = ''
       this.sucursal_id = ''
       this.nombre = ''
+      this.trabajador_id = ''
       this.s_nombre = ''
       this.a_paterno = ''
       this.a_materno = ''
@@ -551,10 +566,11 @@ export default {
       let user = localStorage.getItem('userAuth')
       this.user = JSON.parse(user)
       try {
-        await Promise.all([this.GET_DATA(this.apiUrl), this.GET_DATA('empresas'), this.GET_DATA('roles')]).then((v) => {
+        await Promise.all([this.GET_DATA(this.apiUrl), this.GET_DATA('empresas'), this.GET_DATA('roles'),this.GET_DATA('trabajadors/empresa?filtro=' + this.user.empresa_id + "&sucursal=" + this.user.sucursal_id)]).then((v) => {
           this.list = v[0]
           this.empresas = v[1]
           this.roles = v[2]
+          this.colaboradores = v[3]
         })
       } catch (e) {
         console.log(e);

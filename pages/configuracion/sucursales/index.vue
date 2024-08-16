@@ -86,18 +86,19 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div slot="body" class="row">
+                <div slot="body" class="modal-body row">
                   <div class="form-group col-6">
                       <div class="form-group">
                         <label for="">Empresa</label>
                         <select name="" id="" class="form-control" v-model="empresa_id">
+                          <option value="" disabled selected>Seleccione empresa</option>
                           <option v-for="m in empresas" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
                     </div>
                     <div class="form-group col-6">
                       <div class="form-group">
-                        <label for="">Nombre</label>
+                        <label for="">Nombre de sucursal</label>
                         <input type="text" name="" v-model="nombre" class="form-control" id="">
                       </div>
                     </div>
@@ -111,6 +112,7 @@
                       <div class="form-group">
                         <label for="">Pais</label>
                         <select name="" id="" class="form-control" v-model="pais_id" @change="region(pais_id)">
+                          <option value="" disabled selected>Seleccione pais</option>
                           <option v-for="m in paises" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -119,6 +121,7 @@
                       <div class="form-group">
                         <label for="">Regiones</label>
                         <select name="" id="" class="form-control" v-model="region_id" @change="comuna(region_id)">
+                          <option value="" disabled selected>Seleccione región</option>
                           <option v-for="m in regiones" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -127,6 +130,7 @@
                       <div class="form-group">
                         <label for="">Comuna</label>
                         <select name="" id="" class="form-control" v-model="comuna_id" @change="ciudad(comuna_id)">
+                          <option value="" disabled selected>Seleccione comuna</option>
                           <option v-for="m in comunas" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -135,6 +139,7 @@
                       <div class="form-group">
                         <label for="">Ciudad</label>
                         <select name="" id="" class="form-control" v-model="ciudad_id">
+                          <option value="" disabled selected>Seleccione ciudad</option>
                           <option v-for="m in ciudades" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -168,10 +173,10 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div slot="body" class="row">
+                <div slot="body" class="modal-body row">
                   <div class="form-group col-6">
                       <div class="form-group">
-                        <label for="">Nombre</label>
+                        <label for="">Nombre de sucursal</label>
                         <input type="text" name="" v-model="nombre" class="form-control" id="">
                       </div>
                     </div>
@@ -185,6 +190,7 @@
                       <div class="form-group">
                         <label for="">Pais</label>
                         <select name="" id="" class="form-control" v-model="pais_id" @change="region(pais_id)">
+                          <option value="" disabled selected>Seleccione pais</option>
                           <option v-for="m in paises" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -193,6 +199,7 @@
                       <div class="form-group">
                         <label for="">Regiones</label>
                         <select name="" id="" class="form-control" v-model="region_id" @change="comuna(region_id)">
+                          <option value="" disabled selected>Seleccione región</option>
                           <option v-for="m in regiones" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -201,6 +208,7 @@
                       <div class="form-group">
                         <label for="">Comuna</label>
                         <select name="" id="" class="form-control" v-model="comuna_id" @change="ciudad(comuna_id)">
+                          <option value="" disabled selected>Seleccione comuna</option>
                           <option v-for="m in comunas" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>
@@ -209,6 +217,7 @@
                       <div class="form-group">
                         <label for="">Ciudad</label>
                         <select name="" id="" class="form-control" v-model="ciudad_id">
+                          <option value="" disabled selected>Seleccione ciudad</option>
                           <option v-for="m in ciudades" :value="m.id">{{ m.nombre }}</option>
                         </select>
                       </div>

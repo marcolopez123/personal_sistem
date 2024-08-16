@@ -50,8 +50,7 @@
                       <td data-label="Direccion" class="py-0 px-1">{{ m.direccion }}</td>
                       <td data-label="Acciones" class="py-0 px-1">
                         <div class="btn-group">
-                          <button type="button" @click="abrirEditar(m)"
-                            class="btn btn-info btn-sm py-1 px-2">
+                          <button type="button" @click="abrirEditar(m)" class="btn btn-info btn-sm py-1 px-2">
                             <i class="fas fa-pen"></i>
                           </button>
                           <button type="button" @click="Eliminar(m.id)" class="btn btn-danger btn-sm py-1 px-2">
@@ -63,7 +62,7 @@
                   </tbody>
                 </table>
                 <nav aria-label="Page navigation example">
-          
+
                 </nav>
               </div>
             </div>
@@ -71,123 +70,130 @@
           <div class="modal fade" :class="modalIngreso ? 'showModal' : ''" id="AjusteModal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear</h5>
-        <button type="button" class="btn-close text-dark" @click="modalIngreso = false, cleanModal()"
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Crear</h5>
+                  <button type="button" class="btn-close text-dark" @click="modalIngreso = false, cleanModal()"
                     data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
-      </div>
-      <div class="modal-body row">
-        <div class="form-group col-6">
-          <label for="nombreFantasia">Nombre Fantasia</label>
-          <input type="text" v-model="nombre" class="form-control" id="nombreFantasia">
-        </div>
-        <div class="form-group col-6">
-          <label for="razonSocial">Razon Social</label>
-          <input type="text" v-model="razon_social" class="form-control" id="razonSocial">
-        </div>
-        <div class="form-group col-6">
-          <label for="rut">Rut</label>
-          <input type="text" v-model="rut" class="form-control" id="rut" @input="validateRUN">
-          <span v-if="rut && !isValidRUN" class="text-danger">RUN no válido</span>
-        </div>
-        <div class="form-group col-6">
-          <label for="pais">Pais</label>
-          <select v-model="pais_id" class="form-control" id="pais" @change="region(pais_id)">
-            <option v-for="m in paises" :value="m.id">{{ m.nombre }}</option>
-          </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="regiones">Regiones</label>
-          <select v-model="region_id" class="form-control" id="regiones" @change="comuna(region_id)">
-            <option v-for="m in regiones" :value="m.id">{{ m.nombre }}</option>
-          </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="comuna">Comuna</label>
-          <select v-model="comuna_id" class="form-control" id="comuna" @change="ciudad(comuna_id)">
-            <option v-for="m in comunas" :value="m.id">{{ m.nombre }}</option>
-          </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="ciudad">Ciudad</label>
-          <select v-model="ciudad_id" class="form-control" id="ciudad">
-            <option v-for="m in ciudades" :value="m.id">{{ m.nombre }}</option>
-          </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="direccion">Direccion</label>
-          <input type="text" v-model="direccion" class="form-control" id="direccion">
-        </div>
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" @click="modalIngreso = false; Save()" class="btn btn-secondary w-100" data-bs-dismiss="modal">Guardar</button>
-      </div>
-    </div>
-  </div>
+                </div>
+                <div class="modal-body row">
+                  <div class="form-group col-6">
+                    <label for="nombreFantasia">Nombre Fantasia</label>
+                    <input type="text" v-model="nombre" class="form-control" id="nombreFantasia">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="razonSocial">Razon Social</label>
+                    <input type="text" v-model="razon_social" class="form-control" id="razonSocial">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="rut">Rut</label>
+                    <input type="text" v-model="rut" class="form-control" id="rut" @input="validateRUN">
+                    <span v-if="rut && !isValidRUN" class="text-danger">RUN no válido</span>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="pais">Pais</label>
+                    <select v-model="pais_id" class="form-control" id="pais" @change="region(pais_id)">
+                      <option value="" disabled selected>Seleccione pais</option>
+                      <option v-for="m in paises" :value="m.id">{{ m.nombre }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="regiones">Regiones</label>
+                    <select v-model="region_id" class="form-control" id="regiones" @change="comuna(region_id)">
+                      <option value="" disabled selected>Seleccione región</option>
+                      <option v-for="m in regiones" :value="m.id">{{ m.nombre }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="comuna">Comuna</label>
+                    <select v-model="comuna_id" class="form-control" id="comuna" @change="ciudad(comuna_id)">
+                      <option value="" disabled selected>Seleccione comuna</option>
+                      <option v-for="m in comunas" :value="m.id">{{ m.nombre }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="ciudad">Ciudad</label>
+                    <select v-model="ciudad_id" class="form-control" id="ciudad">
+                      <option value="" disabled selected>Seleccione ciudad</option>
+                      <option v-for="m in ciudades" :value="m.id">{{ m.nombre }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" v-model="direccion" class="form-control" id="direccion">
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" @click="modalIngreso = false; Save()" class="btn btn-secondary w-100"
+                    data-bs-dismiss="modal">Guardar</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="modal fade" :class="modalEditar ? 'showModal' : ''" id="AjusteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-           
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar</h5>
-        <button type="button" class="btn-close text-dark" @click="modalEditar = false, cleanModal()"
+          <div class="modal fade" :class="modalEditar ? 'showModal' : ''" id="AjusteModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modificar</h5>
+                  <button type="button" class="btn-close text-dark" @click="modalEditar = false, cleanModal()"
                     data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
-      </div>
-      <div class="modal-body row">
-        <div class="form-group col-6">
-          <label for="nombreFantasia">Nombre Fantasia</label>
-          <input type="text" v-model="nombre" class="form-control" id="nombreFantasia">
-        </div>
-        <div class="form-group col-6">
-          <label for="razonSocial">Razon Social</label>
-          <input type="text" v-model="razon_social" class="form-control" id="razonSocial">
-        </div>
-        <div class="form-group col-6">
-          <label for="rut">Rut</label>
-          <input type="text" v-model="rut" class="form-control" id="rut" @input="validateRUN">
-          <span v-if="rut && !isValidRUN" class="text-danger">RUN no válido</span>
-        </div>
-        <div class="form-group col-6">
-          <label for="pais">Pais</label>
-          <select v-model="pais_id" class="form-control" id="pais" @change="region(pais_id)">
-            <option v-for="m in paises" :value="m.id">{{ m.nombre }}</option>
-          </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="regiones">Regiones</label>
-          <select v-model="region_id" class="form-control" id="regiones" @change="comuna(region_id)">
-            <option v-for="m in regiones" :value="m.id">{{ m.nombre }}</option>
-          </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="comuna">Comuna</label>
-          <select v-model="comuna_id" class="form-control" id="comuna" @change="ciudad(comuna_id)">
-            <option v-for="m in comunas" :value="m.id">{{ m.nombre }}</option>
-          </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="ciudad">Ciudad</label>
-          <select v-model="ciudad_id" class="form-control" id="ciudad">
-            <option v-for="m in ciudades" :value="m.id">{{ m.nombre }}</option>
-          </select>
-        </div>
-        <div class="form-group col-6">
-          <label for="direccion">Direccion</label>
-          <input type="text" v-model="direccion" class="form-control" id="direccion">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" @click="modalEditar = false; Update()" class="btn btn-secondary w-100" data-bs-dismiss="modal">Actualizar</button>
-      </div>
-    </div>
-  </div>
+                </div>
+                <div class="modal-body row">
+                  <div class="form-group col-6">
+                    <label for="nombreFantasia">Nombre Fantasia</label>
+                    <input type="text" v-model="nombre" class="form-control" id="nombreFantasia">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="razonSocial">Razon Social</label>
+                    <input type="text" v-model="razon_social" class="form-control" id="razonSocial">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="rut">Rut</label>
+                    <input type="text" v-model="rut" class="form-control" id="rut" @input="validateRUN">
+                    <span v-if="rut && !isValidRUN" class="text-danger">RUN no válido</span>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="pais">Pais</label>
+                    <select v-model="pais_id" class="form-control" id="pais" @change="region(pais_id)">
+                      <option v-for="m in paises" :value="m.id">{{ m.nombre }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="regiones">Regiones</label>
+                    <select v-model="region_id" class="form-control" id="regiones" @change="comuna(region_id)">
+                      <option v-for="m in regiones" :value="m.id">{{ m.nombre }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="comuna">Comuna</label>
+                    <select v-model="comuna_id" class="form-control" id="comuna" @change="ciudad(comuna_id)">
+                      <option v-for="m in comunas" :value="m.id">{{ m.nombre }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="ciudad">Ciudad</label>
+                    <select v-model="ciudad_id" class="form-control" id="ciudad">
+                      <option v-for="m in ciudades" :value="m.id">{{ m.nombre }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" v-model="direccion" class="form-control" id="direccion">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" @click="modalEditar = false; Update()" class="btn btn-secondary w-100"
+                    data-bs-dismiss="modal">Actualizar</button>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -349,18 +355,18 @@ export default {
         this.rut = this.formatRUT(cleanedRUN);
       }
     },
-    region(pais_id){
+    region(pais_id) {
       this.$nextTick(async () => {
-      try {
-        await Promise.all([this.GET_DATA('/region/filtro?filtro=' + pais_id)]).then((v) => {
-          this.regiones = v[0];
-        });
-      } catch (e) {
-        console.log(e);
-      } finally {
-        this.load=false
-      }
-    });
+        try {
+          await Promise.all([this.GET_DATA('/region/filtro?filtro=' + pais_id)]).then((v) => {
+            this.regiones = v[0];
+          });
+        } catch (e) {
+          console.log(e);
+        } finally {
+          this.load = false
+        }
+      });
     },
     comuna(region_id) {
       this.$nextTick(async () => {

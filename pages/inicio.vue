@@ -2,7 +2,7 @@
   <div>
     <JcLoader :load="load"></JcLoader>
     <AdminTemplate v-if="user.tipo == 1" :page="page" :modulo="modulo">
-      <div slot="body">
+      <div slot="body" v-if="user.rol_id == 1 || user.rol_id == 2">
         <div class="row">
           <div class="col-xl-3 col-sm-3 mb-xl-0 mb-4">
             <div class="card">
