@@ -19,6 +19,7 @@
     "datatables.net-dt": "^2.0.8",
     "html2pdf.js": "^0.9.3",
     "jspdf": "^2.5.1",
+    "leaflet": "^1.9.4",
     "nuxt": "^2.15.8",
     "v-calendar": "^2.4.2",
     "vue": "^2.7.10",

@@ -9,7 +9,7 @@ export default function ({ $axios }, inject) {
   })
 
   // Set baseURL to something different
-  let url = 'http://localhost:8080/apisgconta/public/api/'
+  let url = 'https://qapersonal.digitalconect.cl/apisgconta/public/api/'
   api.url = url
   api.setBaseURL(url)
 
